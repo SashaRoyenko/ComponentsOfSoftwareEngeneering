@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString(callSuper = true)
 public class Smartphone extends Phone {
     private float frequency;
     private int cores;

@@ -1,9 +1,14 @@
 package com.robosh.view;
 
+import com.robosh.controller.SmartphoneController;
 import com.robosh.entities.Smartphone;
 import java.util.List;
+import java.util.Scanner;
 
 public class SmartphoneView {
+
+  private SmartphoneController smartphoneController = new SmartphoneController();
+  private Scanner scanner = new Scanner(System.in);
 
   public void showMenu() {
     System.out.println("1. Add smartphone");
@@ -37,6 +42,37 @@ public class SmartphoneView {
   public void inputSmartphone() {
     System.out.println("Enter one by one in one row smartphone characteristic "
         + "(Name Cores Frequency Ram Diagonal Memory Weight Camera(true/false))");
+  }
+
+  public static void main(String[] args) {
+    SmartphoneView view = new SmartphoneView();
+    view.render();
+  }
+
+  public void render() {
+    byte input;
+    do {
+      showMenu();
+      input = scanner.nextByte();
+      switch (input) {
+        case 1:
+          inputSmartphone();
+          String smartphoneFeaturesInput = scanner.useDelimiter("\n").next();
+          try {
+            Smartphone smartphone = smartphoneController.postSmartphone(smartphoneFeaturesInput);
+            showSmartphone(smartphone);
+          } catch (Exception e){
+            System.out.println("Error 500");
+          }
+          break;
+        case 2:
+          List<Smartphone> smartphones = smartphoneController.getSmartphones();
+          showSmartphone(smartphones);
+          break;
+        default:
+          break;
+      }
+    } while (input == 1 || input == 2);
   }
 
 }

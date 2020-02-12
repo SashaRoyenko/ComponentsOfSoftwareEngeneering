@@ -13,13 +13,16 @@ public class SmartphoneInputParser implements Parser {
 
   @Override
   public Smartphone parse(String input) {
-    input = input.replaceAll(REMOVE_SPACES, " ");
+    input = input.replaceAll(REMOVE_SPACES, " ").trim();
     String[] stringParameters = input.split("\\s");
     return formSmartphone(stringParameters);
   }
 
   private Smartphone formSmartphone(String[] data) {
     try {
+      if (data.length != 8) {
+        throw new IllegalArgumentException();
+      }
       return Smartphone.builder()
           .name(data[0])
           .cores(parseInt(data[1]))
@@ -31,7 +34,7 @@ public class SmartphoneInputParser implements Parser {
           .camera(parseBoolean(data[7]))
           .build();
     } catch (Exception ex) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Failed to parse data");
     }
   }
 

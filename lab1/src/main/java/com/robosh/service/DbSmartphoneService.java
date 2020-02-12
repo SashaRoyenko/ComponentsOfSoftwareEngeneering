@@ -8,6 +8,10 @@ public class DbSmartphoneService {
 
   private SmartphoneDao smartphoneDao;
 
+  public DbSmartphoneService(SmartphoneDao smartphoneDao) {
+    this.smartphoneDao = smartphoneDao;
+  }
+
   public DbSmartphoneService() {
     smartphoneDao = new SmartphoneDao();
   }
