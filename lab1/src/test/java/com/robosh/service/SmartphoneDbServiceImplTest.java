@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import com.robosh.dao.SmartphoneDao;
 import com.robosh.entities.Smartphone;
+import com.robosh.service.implementation.SmartphoneDbServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,16 +16,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class DbSmartphoneServiceTest {
+class SmartphoneDbServiceImplTest {
 
-  private DbSmartphoneService smartphoneService;
+  private SmartphoneDbServiceImpl smartphoneService;
 
   @Mock
   private SmartphoneDao smartphoneDao;
 
   @BeforeEach
   void init() {
-    smartphoneService = new DbSmartphoneService(smartphoneDao);
+    smartphoneService = new SmartphoneDbServiceImpl(smartphoneDao);
   }
 
   @Test
@@ -40,7 +41,7 @@ class DbSmartphoneServiceTest {
   @Test
   void shouldSaveSmartphone() {
     Smartphone smartphone = getSmartphoneList().get(0);
-    smartphoneService.saveSmartphone(smartphone);
+    smartphoneService.save(smartphone);
     verify(smartphoneDao).addSmartphone(smartphone);
   }
 

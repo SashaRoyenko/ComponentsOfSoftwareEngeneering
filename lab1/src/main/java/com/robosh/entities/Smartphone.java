@@ -1,7 +1,13 @@
 package com.robosh.entities;
 
-import com.robosh.annotations.TestAnnotation;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +20,7 @@ public class Smartphone extends Phone {
     private int cores;
     private int ram;
 
-    @Builder
+    @lombok.Builder
     @SuppressWarnings("squid:S00107")
     public Smartphone(String name, int weight, float diagonal, int memory, boolean camera,
                       float frequency, int cores, int ram) {

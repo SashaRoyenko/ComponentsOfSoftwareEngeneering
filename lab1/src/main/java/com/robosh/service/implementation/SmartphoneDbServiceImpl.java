@@ -1,22 +1,23 @@
-package com.robosh.service;
+package com.robosh.service.implementation;
 
 import com.robosh.dao.SmartphoneDao;
 import com.robosh.entities.Smartphone;
+import com.robosh.service.DbService;
 import java.util.List;
 
-public class DbSmartphoneService {
+public class SmartphoneDbServiceImpl implements DbService {
 
   private SmartphoneDao smartphoneDao;
 
-  public DbSmartphoneService(SmartphoneDao smartphoneDao) {
+  public SmartphoneDbServiceImpl(SmartphoneDao smartphoneDao) {
     this.smartphoneDao = smartphoneDao;
   }
 
-  public DbSmartphoneService() {
+  public SmartphoneDbServiceImpl() {
     smartphoneDao = new SmartphoneDao();
   }
 
-  public void saveSmartphone(Smartphone smartphone) {
+  public void save(Smartphone smartphone) {
     smartphoneDao.addSmartphone(smartphone);
   }
 

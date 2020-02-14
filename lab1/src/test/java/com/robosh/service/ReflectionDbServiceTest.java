@@ -10,7 +10,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ReflectionServiceTest {
+class ReflectionDbServiceTest {
 
   private Smartphone smartphone;
   private ReflectionService reflectionService;

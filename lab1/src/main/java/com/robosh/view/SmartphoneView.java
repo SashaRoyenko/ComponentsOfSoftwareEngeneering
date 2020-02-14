@@ -9,6 +9,23 @@ public class SmartphoneView {
 
   private SmartphoneController smartphoneController = new SmartphoneController();
   private Scanner scanner = new Scanner(System.in);
+  private static volatile SmartphoneView instance;
+
+  private SmartphoneView() {
+
+  }
+
+  public static SmartphoneView getInstance() {
+    if (instance == null) {
+      synchronized (SmartphoneView.class) {
+        if (instance == null) {
+          instance = new SmartphoneView();
+        }
+      }
+    }
+    return instance;
+  }
+
 
   public void showMenu() {
     System.out.println("1. Add smartphone");
@@ -45,7 +62,7 @@ public class SmartphoneView {
   }
 
   public static void main(String[] args) {
-    SmartphoneView view = new SmartphoneView();
+    SmartphoneView view = SmartphoneView.getInstance();
     view.render();
   }
 
@@ -61,7 +78,7 @@ public class SmartphoneView {
           try {
             Smartphone smartphone = smartphoneController.postSmartphone(smartphoneFeaturesInput);
             showSmartphone(smartphone);
-          } catch (Exception e){
+          } catch (Exception e) {
             System.out.println("Error 500");
           }
           break;

@@ -30,6 +30,12 @@ class MyInvocationHandlerTest {
   }
 
   private Phone getPhone() {
-    return new Phone("Nokia", 200, 2.2f, 16, true);
+    return Phone.newBuilder()
+        .name("Nokia")
+        .weight(200)
+        .camera(true)
+        .diagonal(5.2f)
+        .memory(16)
+        .build();
   }
 }
