@@ -9,10 +9,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class SmartphoneInputParserTest {
 
-  private SmartphoneInputParser parser;
+  private Parser parser;
 
   SmartphoneInputParserTest() {
-    this.parser = new SmartphoneInputParser();
+    this.parser = ParserFactory.getSmartphoneInputParser();
   }
 
   @ParameterizedTest
@@ -24,7 +24,7 @@ class SmartphoneInputParserTest {
   })
   void shouldReturnSmartphoneObjectAfterParsing(String input) {
     Smartphone expected = getSmartphone();
-    Smartphone result = parser.parse(input);
+    Smartphone result = (Smartphone) parser.parse(input);
     assertEquals(expected, result);
   }
 
