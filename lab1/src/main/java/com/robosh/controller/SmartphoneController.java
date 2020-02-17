@@ -1,31 +1,49 @@
 package com.robosh.controller;
 
-import com.robosh.entities.Smartphone;
-import com.robosh.parser.Parser;
-import com.robosh.parser.ParserFactory;
+import com.robosh.controller.command.Get.GetCommand;
+import com.robosh.controller.command.Get.GetSmartphoneCommand;
+import com.robosh.controller.command.Post.PostCommand;
+import com.robosh.controller.command.Post.PostSmartphoneCommand;
+import com.robosh.enam.Request;
 import com.robosh.service.DbService;
+import com.robosh.service.implementation.SmartphoneDbServiceImpl;
 import com.robosh.service.proxy.ProxySmartphoneDbService;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SmartphoneController {
 
-  private Parser parser;
-  private DbService smartphoneDbService;
+  private Map<String, PostCommand> postCommandMap;
+  private Map<String, GetCommand> getCommandMap;
+  private DbService service;
 
   public SmartphoneController() {
-    parser = ParserFactory.getSmartphoneInputParser();
-    smartphoneDbService = new ProxySmartphoneDbService();
+    postCommandMap = new HashMap<>();
+    getCommandMap = new HashMap<>();
+    service = new ProxySmartphoneDbService();
+    postCommandMap.put("/smartphone", new PostSmartphoneCommand(service));
+    getCommandMap.put("/smartphone", new GetSmartphoneCommand(service));
   }
 
-
-  public Smartphone postSmartphone(String input) {
-    Smartphone smartphone = (Smartphone) parser.parse(input);
-    smartphoneDbService.save(smartphone);
-    return smartphone;
-  }
-
-  public List<Smartphone> getSmartphones() {
-    return smartphoneDbService.findAll();
+  public Object executeRequest(Request request, String uri, Object parameters) {
+    switch (request) {
+      case GET:
+        GetCommand getCommand = getCommandMap.get(uri);
+        if (getCommand == null) {
+          throw new UnsupportedOperationException("Error 404");
+        } else {
+          return getCommand.execute();
+        }
+      case POST:
+        PostCommand postCommand = postCommandMap.get(uri);
+        if (postCommand == null) {
+          throw new UnsupportedOperationException("Error 404");
+        } else {
+          return postCommand.execute(parameters);
+        }
+      default:
+        throw new UnsupportedOperationException("Unsupported request param");
+    }
   }
 
 }
