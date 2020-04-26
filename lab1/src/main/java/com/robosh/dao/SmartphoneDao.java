@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SmartphoneDao {
-  private List<Smartphone> smartphoneList = new ArrayList<>();
+  private final List<Smartphone> smartphoneList = new ArrayList<>();
 
   public List<Smartphone> getSmartphoneList(){
     return smartphoneList;

@@ -5,27 +5,25 @@ import com.robosh.enam.Request;
 import com.robosh.entities.Smartphone;
 import java.util.List;
 import java.util.Scanner;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class SmartphoneView {
 
-  private SmartphoneController smartphoneController = new SmartphoneController();
+  private final SmartphoneController smartphoneController;
   private Scanner scanner = new Scanner(System.in);
-  private static volatile SmartphoneView instance;
+//  private static volatile SmartphoneView instance;
 
-  private SmartphoneView() {
-
-  }
-
-  static SmartphoneView getInstance() {
-    if (instance == null) {
-      synchronized (SmartphoneView.class) {
-        if (instance == null) {
-          instance = new SmartphoneView();
-        }
-      }
-    }
-    return instance;
-  }
+//  public static SmartphoneView getInstance() {
+//    if (instance == null) {
+//      synchronized (SmartphoneView.class) {
+//        if (instance == null) {
+//          instance = new SmartphoneView(smart);
+//        }
+//      }
+//    }
+//    return instance;
+//  }
 
 
   void showMenu() {
@@ -62,12 +60,7 @@ public class SmartphoneView {
         + "(Name Cores Frequency Ram Diagonal Memory Weight Camera(true/false))");
   }
 
-  public static void main(String[] args) {
-    SmartphoneView view = SmartphoneView.getInstance();
-    view.render();
-  }
-
-  void render() {
+  public void render() {
     try {
       byte input;
       do {
@@ -85,7 +78,7 @@ public class SmartphoneView {
         }
       } while (input == 1 || input == 2);
     } catch (Exception e) {
-      String message = e.getMessage().isEmpty() ? "Something went wrong" : e.getMessage();
+      String message = !e.getMessage().isEmpty() ? "Something went wrong" : e.getMessage();
       System.out.println(message);
     }
   }

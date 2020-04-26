@@ -2,14 +2,12 @@ package com.robosh.service;
 
 import com.robosh.annotations.TestAnnotation;
 import com.robosh.entities.Smartphone;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class SmartphoneService {
 
-  private Smartphone smartphone;
-
-  public SmartphoneService(Smartphone smartphone) {
-    this.smartphone = smartphone;
-  }
+  private final Smartphone smartphone;
 
   @TestAnnotation
   public void increaseMemory(int numberOfIncrease) {

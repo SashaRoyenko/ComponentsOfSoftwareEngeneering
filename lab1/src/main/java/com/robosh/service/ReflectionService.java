@@ -5,13 +5,13 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReflectionService {
 
-  private Object object;
+  private final Object object;
 
   public String getClassName() {
     return object.getClass().getSimpleName();

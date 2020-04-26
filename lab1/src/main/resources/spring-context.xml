@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:component-scan base-package="com.robosh"/>
+  <context:annotation-config/>
+
+  <bean name="smartphoneView" class="com.robosh.view.SmartphoneView">
+    <constructor-arg index="0" ref="smartphoneController"/>
+  </bean>
+
+  <bean name="smartphoneController" class="com.robosh.controller.SmartphoneController"
+    init-method="init">
+    <property name="service" ref="proxySmartphoneDbService"/>
+  </bean>
+
+</beans>

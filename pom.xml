@@ -18,6 +18,7 @@
 
   <modules>
     <module>lab1</module>
+    <module>CarWash</module>
   </modules>
 
   <dependencies>

@@ -1,23 +1,19 @@
 package com.robosh.service.proxy;
 
-import com.robosh.dao.SmartphoneDao;
 import com.robosh.entities.Smartphone;
 import com.robosh.service.DbService;
 import com.robosh.service.implementation.SmartphoneDbServiceImpl;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@RequiredArgsConstructor
+@Service
 public class ProxySmartphoneDbService implements DbService {
 
-  private SmartphoneDbServiceImpl smartphoneDbService;
-  private SmartphoneDao smartphoneDao;
-
-  public ProxySmartphoneDbService() {
-    smartphoneDbService = new SmartphoneDbServiceImpl();
-    this.smartphoneDao = new SmartphoneDao();
-  }
-
+  private final SmartphoneDbServiceImpl smartphoneDbService;
 
   @Override
   public void save(Smartphone smartphone) {
