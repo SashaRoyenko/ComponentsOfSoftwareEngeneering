@@ -9,7 +9,7 @@ spring:
     name: '@project.artifactId@'
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/car_wash?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/carwash?serverTimezone=UTC
     username: root
     password: root
   jpa:

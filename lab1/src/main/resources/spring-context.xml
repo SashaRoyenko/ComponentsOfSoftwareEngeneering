@@ -13,7 +13,7 @@
 
   <bean name="smartphoneController" class="com.robosh.controller.SmartphoneController"
     init-method="init">
-    <property name="service" ref="proxySmartphoneDbService"/>
+    <property name="washService" ref="proxySmartphoneDbService"/>
   </bean>
 
 </beans>

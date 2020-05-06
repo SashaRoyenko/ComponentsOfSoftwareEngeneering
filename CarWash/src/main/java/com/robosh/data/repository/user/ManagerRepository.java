@@ -1,4 +1,4 @@
-package com.robosh.data.repository;
+package com.robosh.data.repository.user;
 
 import com.robosh.data.entity.user.Manager;
 import org.springframework.data.jpa.repository.JpaRepository;

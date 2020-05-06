@@ -12,8 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Attendance {
 
   @Id
@@ -22,7 +30,7 @@ public class Attendance {
 
   @OneToOne
   @JoinColumn(nullable = false)
-  private Visitor user;
+  private Visitor visitor;
 
   @OneToOne
   @JoinColumn(nullable = false)
@@ -30,8 +38,11 @@ public class Attendance {
 
   @ManyToMany
   @Column(nullable = false)
-  private List<Service> services;
+  private List<WashService> washServices;
 
   @Column(nullable = false)
   private LocalDateTime time;
+
+  @Column(name = "totalprice")
+  private float totalPrice;
 }
